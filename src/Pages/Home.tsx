@@ -1,9 +1,11 @@
 import { useRef, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
 import { gsap } from "gsap";
 
-function Home() {
+export default function Home() {
   const heroRef = useRef(null);
+  const navigate = useNavigate(); // react-router hook
 
   useEffect(() => {
     gsap.from(heroRef.current, {
@@ -14,8 +16,8 @@ function Home() {
     });
   }, []);
 
-  const handleLogin = () => alert("Login clicked!");
-  const handleSignUp = () => alert("Sign Up clicked!");
+  const handleLogin = () => navigate("/login");
+  const handleSignUp = () => navigate("/signup"); // navigate to Sign-Up page
   const handleGoogleSignIn = () => alert("Google Sign-In clicked!");
 
   return (
@@ -72,7 +74,7 @@ function Home() {
           <p className="text-white/90">
             Don't have an account?{" "}
             <span
-              onClick={handleSignUp}
+              onClick={handleSignUp} // navigates to /signup
               className="text-yellow-300 font-semibold cursor-pointer hover:underline"
             >
               Sign Up
@@ -83,5 +85,3 @@ function Home() {
     </div>
   );
 }
-
-export default Home;
